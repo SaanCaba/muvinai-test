@@ -1,4 +1,13 @@
-import { Avatar, Box, Button, Divider, Grid, Paper } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Grid,
+  IconButton,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { colors } from "../../constants";
 import usePersonalData from "../../hooks/usePersonalData";
 import Field from "../Field";
@@ -6,15 +15,20 @@ import defaultAvatar from "../../assets/Default-avatar.jpg";
 import { useState } from "react";
 import PersonalDataForm from "../PersonalDataForm";
 import { PersonalData } from "../../models/personalData";
+import EditAvatar from "../EditAvatar";
 
 function PersonalSection() {
-  const { personalData, editData } = usePersonalData();
+  const { personalData, editData, editPicture } = usePersonalData();
   const [edit, setEdit] = useState(false);
 
   const handleEdit = (e: React.FormEvent, dataForm: PersonalData) => {
     e.preventDefault();
     editData(dataForm);
     setEdit(false);
+  };
+
+  const handleEditPicture = (picture: string) => {
+    editPicture(picture);
   };
 
   return (
@@ -29,7 +43,6 @@ function PersonalSection() {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        padding: "10px",
       }}
       component="section"
     >
@@ -59,7 +72,16 @@ function PersonalSection() {
             alt="profile photo"
             src={!personalData.picture ? defaultAvatar : personalData.picture}
           />
+          <EditAvatar editPicture={handleEditPicture} />
         </Box>
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+          }}
+        >
+          {personalData.firstName}
+        </Typography>
         {edit ? (
           <PersonalDataForm handleEdit={handleEdit} data={personalData} />
         ) : (
@@ -97,7 +119,13 @@ function PersonalSection() {
             </Button>
           </Box>
         )}
+        <Divider
+          sx={{
+            background: colors.primary,
+          }}
+        />
       </Box>
+
       <Box></Box>
     </Paper>
   );

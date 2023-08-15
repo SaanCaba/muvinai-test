@@ -21,7 +21,14 @@ function usePersonalData() {
     });
   };
 
-  return { personalData, editData };
+  const editPicture = (picture: string) => {
+    setPersonalData({
+      ...personalData,
+      picture,
+    });
+  };
+
+  return { personalData, editData, editPicture };
 }
 
 export default usePersonalData;
