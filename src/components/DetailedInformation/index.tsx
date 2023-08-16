@@ -138,7 +138,7 @@ function DetailedInformation({ fitMedical, editFitMedical }: Props) {
             </Button>
           </Box>
           <Box>
-            <Label name="Fecha de caducidad" />
+            <Label name="Fecha de caducidadnpm rn" />
             <TextField
               type="date"
               sx={{
