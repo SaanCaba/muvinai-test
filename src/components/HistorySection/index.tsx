@@ -1,8 +1,10 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import { colors } from "../../constants";
 import PaymentsHistorySection from "./PaymentsHistorySection";
 import BoxLayout from "../BoxLayout";
 import EditionHistorySection from "./EditionHistorySection";
+import AssociationsSection from "./AssociationsSection";
+import CuponsSection from "./CuponsSection";
 
 function HistorySection() {
   return (
@@ -39,6 +41,26 @@ function HistorySection() {
         >
           <PaymentsHistorySection />
           <EditionHistorySection />
+          <Grid container>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                paddingRight: "10px",
+              }}
+            >
+              <AssociationsSection />
+            </Grid>
+            <Grid
+              item
+              xs={6}
+              sx={{
+                paddingLeft: "10px",
+              }}
+            >
+              <CuponsSection />
+            </Grid>
+          </Grid>
         </Box>
       </BoxLayout>
     </Paper>
