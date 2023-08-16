@@ -3,7 +3,6 @@ import { Box } from "@mui/material";
 import SectionTitle from "../../Helpers/SectionTitle";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import CloseIcon from "@mui/icons-material/Close";
-import EditIcon from "@mui/icons-material/Edit";
 
 interface Props {
   expanded: boolean;

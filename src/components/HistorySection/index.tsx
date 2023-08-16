@@ -5,6 +5,8 @@ import BoxLayout from "../BoxLayout";
 import EditionHistorySection from "./EditionHistorySection";
 import AssociationsSection from "./AssociationsSection";
 import CuponsSection from "./CuponsSection";
+import Accesses from "./AccessesSection";
+import AccessesSection from "./AccessesSection";
 
 function HistorySection() {
   return (
@@ -41,6 +43,8 @@ function HistorySection() {
         >
           <PaymentsHistorySection />
           <EditionHistorySection />
+          <CuponsSection />
+
           <Grid container>
             <Grid
               item
@@ -58,7 +62,7 @@ function HistorySection() {
                 paddingLeft: "10px",
               }}
             >
-              <CuponsSection />
+              <AccessesSection />
             </Grid>
           </Grid>
         </Box>

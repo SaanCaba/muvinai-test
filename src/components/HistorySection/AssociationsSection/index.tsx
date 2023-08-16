@@ -64,7 +64,7 @@ function AssociationsSection() {
             </Typography>
           </Grid>
         </Grid>
-        {associations.map((el) => {
+        {totalAssociations.map((el) => {
           return <AssociationDates association={el} />;
         })}
       </Collapse>

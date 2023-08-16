@@ -1,8 +1,9 @@
 import { PaymentHistory } from "../../models/paymentHistory";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { colors } from "../../constants";
+import HistoryText from "../Helpers/HistoryText";
 interface Props {
   paymentHistory: PaymentHistory;
 }
@@ -20,32 +21,40 @@ function PaymentHistoryItem({ paymentHistory }: Props) {
       }}
     >
       <Grid item xs={3}>
-        <span style={{ color: colors.primary }}>{paymentHistory.year}</span>
+        <HistoryText
+          title={paymentHistory.year}
+          styles={{ color: colors.primary, fontSize: "17px" }}
+        />
       </Grid>
       <Grid item xs={2}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={
+            paymentHistory.payments.card.brand +
+            "  #" +
+            paymentHistory.payments.card.lastFourDigits
+          }
+          styles={{
             display: "flex",
             justifyContent: "center",
-            gap: "15px",
+            fontSize: "17px",
           }}
-        >
-          {paymentHistory.payments.card.brand}
-          <i> {"#" + paymentHistory.payments.card.lastFourDigits}</i>
-        </Typography>
+        />
       </Grid>
       <Grid item xs={2}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={Number(paymentHistory.payments.amount).toLocaleString(
+            "es-AR",
+            {
+              style: "currency",
+              currency: "ARS",
+            }
+          )}
+          styles={{
             display: "flex",
             justifyContent: "center",
+            fontSize: "17px",
           }}
-        >
-          {Number(paymentHistory.payments.amount).toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS",
-          })}
-        </Typography>
+        />
       </Grid>
       <Grid item xs={2}>
         <Box
@@ -62,14 +71,14 @@ function PaymentHistoryItem({ paymentHistory }: Props) {
         </Box>
       </Grid>
       <Grid item xs={3}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={paymentHistory.payments.date}
+          styles={{
             display: "flex",
             justifyContent: "end",
+            fontSize: "17px",
           }}
-        >
-          <i>{paymentHistory.payments.date}</i>
-        </Typography>
+        />
       </Grid>
     </Grid>
   );

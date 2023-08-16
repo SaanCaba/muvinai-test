@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Cupon } from "../../models/cupons";
 import { colors } from "../../constants";
+import HistoryText from "../Helpers/HistoryText";
 
 interface Props {
   cupon: Cupon;
@@ -19,40 +20,44 @@ function CuponItem({ cupon }: Props) {
       }}
     >
       <Grid xs={4}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={cupon.name}
+          styles={{
+            display: "flex",
+            justifyContent: "start",
+            fontSize: "18px",
+          }}
+        />
+      </Grid>
+      <Grid xs={2}>
+        <HistoryText
+          title={cupon.from}
+          styles={{
             display: "flex",
             justifyContent: "center",
             fontSize: "18px",
           }}
-          variant="h6"
-        >
-          {cupon.name}
-        </Typography>
+        />
+      </Grid>
+      <Grid xs={2}>
+        <HistoryText
+          title={cupon.to}
+          styles={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "18px",
+          }}
+        />
       </Grid>
       <Grid xs={4}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={cupon.discount}
+          styles={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "end",
             fontSize: "18px",
           }}
-          variant="h6"
-        >
-          {cupon.from}
-        </Typography>
-      </Grid>
-      <Grid xs={4}>
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "18px",
-          }}
-          variant="h6"
-        >
-          {cupon.to}
-        </Typography>
+        />
       </Grid>
     </Grid>
   );

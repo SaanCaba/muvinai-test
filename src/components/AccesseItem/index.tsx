@@ -1,12 +1,13 @@
 import { Grid } from "@mui/material";
-import { colors } from "../../constants";
+import React from "react";
 import HistoryText from "../Helpers/HistoryText";
+import { colors } from "../../constants";
 
 interface Props {
-  association: { from: string; to: string };
+  accesse: { place: string; total: number };
 }
 
-function AssociationDates({ association }: Props) {
+function AccesseItem({ accesse }: Props) {
   return (
     <Grid
       container
@@ -20,7 +21,7 @@ function AssociationDates({ association }: Props) {
     >
       <Grid item xs={6}>
         <HistoryText
-          title={association.from}
+          title={accesse.place}
           styles={{
             display: "flex",
             justifyContent: "center",
@@ -30,7 +31,7 @@ function AssociationDates({ association }: Props) {
       </Grid>
       <Grid item xs={6}>
         <HistoryText
-          title={association.to}
+          title={accesse.total}
           styles={{
             display: "flex",
             justifyContent: "center",
@@ -42,4 +43,4 @@ function AssociationDates({ association }: Props) {
   );
 }
 
-export default AssociationDates;
+export default AccesseItem;

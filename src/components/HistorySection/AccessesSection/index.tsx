@@ -1,16 +1,18 @@
 import { Collapse, Grid, Paper, Typography } from "@mui/material";
-import HistoryHeader from "../HistoryHeader";
-import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import { useMemo, useState } from "react";
+import HistoryHeader from "../HistoryHeader";
+import RedoIcon from "@mui/icons-material/Redo";
 import { colors } from "../../../constants";
-import { cupons } from "./data";
-import CuponItem from "../../CuponItem";
+import { totalAccess } from "./data";
+import AccesseItem from "../../AccesseItem";
 
-function CuponsSection() {
+function AccessesSection() {
   const [expanded, setExpanded] = useState(false);
-  const cuponsData = useMemo(() => {
-    return cupons;
+
+  const accesses = useMemo(() => {
+    return totalAccess;
   }, []);
+
   return (
     <Paper
       sx={{
@@ -20,9 +22,9 @@ function CuponsSection() {
       <HistoryHeader
         expanded={expanded}
         setExpanded={setExpanded}
-        title="Cupones utilizados"
+        title="Últimos accesos"
       >
-        <ConfirmationNumberIcon color="success" />
+        <RedoIcon color="success" />
       </HistoryHeader>
       <Collapse
         sx={{
@@ -33,26 +35,14 @@ function CuponsSection() {
         unmountOnExit
       >
         <Grid
-          container
           sx={{
             padding: "10px",
             border: `1px solid ${colors.primary}`,
             borderRadius: "5px 5px 0px 0px",
           }}
+          container
         >
-          <Grid xs={4}>
-            <Typography
-              variant="h6"
-              sx={{
-                display: "flex",
-                justifyContent: "start",
-                color: colors.primary,
-              }}
-            >
-              Nombre
-            </Typography>
-          </Grid>
-          <Grid xs={2}>
+          <Grid item xs={6}>
             <Typography
               variant="h6"
               sx={{
@@ -61,10 +51,10 @@ function CuponsSection() {
                 color: colors.primary,
               }}
             >
-              Desde
+              Sede
             </Typography>
           </Grid>
-          <Grid xs={2}>
+          <Grid item xs={6}>
             <Typography
               variant="h6"
               sx={{
@@ -73,28 +63,16 @@ function CuponsSection() {
                 color: colors.primary,
               }}
             >
-              Hasta
-            </Typography>
-          </Grid>
-          <Grid xs={4}>
-            <Typography
-              variant="h6"
-              sx={{
-                display: "flex",
-                justifyContent: "end",
-                color: colors.primary,
-              }}
-            >
-              Cupon
+              Cantidad de veces
             </Typography>
           </Grid>
         </Grid>
-        {cuponsData.map((el, i) => {
-          return <CuponItem cupon={el} key={i} />;
+        {accesses.map((el, i) => {
+          return <AccesseItem accesse={el} key={i} />;
         })}
       </Collapse>
     </Paper>
   );
 }
 
-export default CuponsSection;
+export default AccessesSection;

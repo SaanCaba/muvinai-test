@@ -1,5 +1,6 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { colors } from "../../constants";
+import HistoryText from "../Helpers/HistoryText";
 
 interface Props {
   editionHistory: EditionHistory;
@@ -18,38 +19,42 @@ function EditionHistoryItem({ editionHistory }: Props) {
       }}
     >
       <Grid item xs={4}>
-        <span>{editionHistory.operatorName}</span>
+        <HistoryText
+          title={editionHistory.operatorName}
+          styles={{ fontSize: "17px" }}
+        />
       </Grid>
       <Grid item xs={2}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={editionHistory.action.element}
+          styles={{
             display: "flex",
             justifyContent: "center",
             gap: "15px",
+            fontSize: "17px",
           }}
-        >
-          {editionHistory.action.element}
-        </Typography>
+        />
       </Grid>
       <Grid item xs={2}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={editionHistory.action.description}
+          styles={{
             display: "flex",
             justifyContent: "center",
+            fontSize: "17px",
+            whiteSpace: "nowrap",
           }}
-        >
-          {editionHistory.action.description}
-        </Typography>
+        />
       </Grid>
       <Grid item xs={4}>
-        <Typography
-          sx={{
+        <HistoryText
+          title={editionHistory.action.date}
+          styles={{
             display: "flex",
             justifyContent: "end",
+            fontSize: "17px",
           }}
-        >
-          <i>{editionHistory.action.date}</i>
-        </Typography>
+        />
       </Grid>
     </Grid>
   );
