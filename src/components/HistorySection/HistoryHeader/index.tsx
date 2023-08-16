@@ -3,15 +3,16 @@ import { Box } from "@mui/material";
 import SectionTitle from "../../Helpers/SectionTitle";
 import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import CloseIcon from "@mui/icons-material/Close";
-import PaidIcon from "@mui/icons-material/Paid";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface Props {
   expanded: boolean;
   setExpanded: (val: boolean) => void;
   title: string;
+  children: React.ReactNode;
 }
 
-function HistoryHeader({ expanded, setExpanded, title }: Props) {
+function HistoryHeader({ expanded, setExpanded, title, children }: Props) {
   return (
     <Box
       sx={{
@@ -20,9 +21,7 @@ function HistoryHeader({ expanded, setExpanded, title }: Props) {
         color: colors.primary,
       }}
     >
-      <SectionTitle title={title}>
-        <PaidIcon color="success" />
-      </SectionTitle>
+      <SectionTitle title={title}>{children}</SectionTitle>
       {expanded ? (
         <CloseIcon
           sx={{

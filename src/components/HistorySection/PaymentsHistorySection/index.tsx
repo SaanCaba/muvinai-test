@@ -1,7 +1,7 @@
 import { Paper, Grid, Collapse, Typography } from "@mui/material";
 import { useMemo, useState } from "react";
 import { colors } from "../../../constants";
-
+import PaidIcon from "@mui/icons-material/Paid";
 import { paymentHistory } from "./data";
 import PaymentHistoryItem from "../../PaymentHistoryItem";
 import HistoryHeader from "../HistoryHeader";
@@ -21,7 +21,9 @@ function PaymentsHistorySection() {
         setExpanded={setExpanded}
         expanded={expanded}
         title="Historial de pagos"
-      />
+      >
+        <PaidIcon color="success" />
+      </HistoryHeader>
       <Collapse
         sx={{
           paddingTop: "15px",
@@ -35,6 +37,7 @@ function PaymentsHistorySection() {
           sx={{
             padding: "10px",
             border: `1px solid ${colors.primary}`,
+            borderRadius: "5px 5px 0px 0px",
           }}
         >
           <Grid item xs={3}>
@@ -44,7 +47,7 @@ function PaymentsHistorySection() {
                 color: colors.primary,
               }}
             >
-              Year
+              Año
             </Typography>
           </Grid>
           <Grid item xs={2}>
@@ -56,7 +59,7 @@ function PaymentsHistorySection() {
                 color: colors.primary,
               }}
             >
-              Card / Last 4 Digits
+              Tarjeta / Últimos 4 digitos
             </Typography>
           </Grid>
           <Grid item xs={2}>
@@ -68,7 +71,7 @@ function PaymentsHistorySection() {
                 color: colors.primary,
               }}
             >
-              Amount
+              Total
             </Typography>
           </Grid>
           <Grid item xs={2}>
@@ -80,7 +83,7 @@ function PaymentsHistorySection() {
                 color: colors.primary,
               }}
             >
-              Payment Status
+              Estado del pago
             </Typography>
           </Grid>
           <Grid item xs={3}>
@@ -92,7 +95,7 @@ function PaymentsHistorySection() {
                 color: colors.primary,
               }}
             >
-              Date
+              Fecha
             </Typography>
           </Grid>
         </Grid>

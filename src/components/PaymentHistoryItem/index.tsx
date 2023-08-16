@@ -14,6 +14,9 @@ function PaymentHistoryItem({ paymentHistory }: Props) {
       sx={{
         padding: "10px",
         border: `1px solid ${colors.primary}`,
+        "&:last-child": {
+          borderRadius: "0px 0px 5px 5px",
+        },
       }}
     >
       <Grid item xs={3}>
