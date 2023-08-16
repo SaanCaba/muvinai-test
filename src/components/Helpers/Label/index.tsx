@@ -1,11 +1,15 @@
-import React from "react";
-
 interface Props {
   name: string;
 }
 
 function Label({ name }: Props) {
-  return <label>{name}</label>;
+  return (
+    <label
+      style={{ display: "flex", justifyContent: "center", fontSize: "17px" }}
+    >
+      {name}
+    </label>
+  );
 }
 
 export default Label;

@@ -12,6 +12,7 @@ function usePersonalData() {
     mail: "santi@gmail.com",
     birth: "29/11/2001",
     picture: null,
+    fitMedical: false,
   });
 
   const editData = (dataForm: PersonalData) => {
@@ -28,7 +29,14 @@ function usePersonalData() {
     });
   };
 
-  return { personalData, editData, editPicture };
+  const editFitMedical = (fitMedicalStatus: boolean) => {
+    setPersonalData({
+      ...personalData,
+      fitMedical: fitMedicalStatus,
+    });
+  };
+
+  return { personalData, editData, editPicture, editFitMedical };
 }
 
 export default usePersonalData;

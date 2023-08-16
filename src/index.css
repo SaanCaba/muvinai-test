@@ -23,6 +23,17 @@ body {
   cursor: pointer;
 }
 
+.fitMedicalLabel {
+  background-color: #2cac84;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  transition: all 1s ease;
+  cursor: pointer;
+}
+.fitMedicalLabel:hover {
+  background-color: #228566;
+}
 .labelPicture:hover {
   background-color: rgba(206, 245, 206, 0.516);
 }
