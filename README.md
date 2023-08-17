@@ -17,4 +17,4 @@
 
 - En http://localhost:5173/ se debería poder visualizar.
 
-![Project image]("https://raw.githubusercontent.com/SaanCaba/muvinai-test/main/src/assets/imgmuvinai.png")
+![Project image](https://raw.githubusercontent.com/SaanCaba/muvinai-test/main/src/assets/imgmuvinai.png)
