@@ -1,11 +1,10 @@
 import { Button } from "@mui/material";
-import React from "react";
-import { PersonalData } from "../../models/personalData";
+import { PersonalDataForm } from "../../models/personalData";
 
 interface Props {
   high: boolean;
-  setData: (data: PersonalData) => void;
-  data: PersonalData;
+  setData: (data: PersonalDataForm) => void;
+  data: PersonalDataForm;
 }
 
 function HighButton({ high, setData, data }: Props) {

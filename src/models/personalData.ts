@@ -6,7 +6,11 @@ export interface PersonalData {
   phoneNumber: string;
   high: boolean;
   mail: string;
-  birth: string;
+  birth: string | Date;
   picture: any;
   fitMedical: boolean;
+}
+
+export interface PersonalDataForm extends PersonalData {
+  birth: Date;
 }

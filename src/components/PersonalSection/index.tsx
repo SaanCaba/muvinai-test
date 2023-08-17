@@ -1,26 +1,13 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, Paper } from "@mui/material";
 import { colors } from "../../constants";
 import usePersonalData from "../../hooks/usePersonalData";
-import Field from "../Field";
-import defaultAvatar from "../../assets/Default-avatar.jpg";
 import { useState } from "react";
-import PersonalDataForm from "../PersonalDataForm";
 import { PersonalData } from "../../models/personalData";
-import EditAvatar from "../EditAvatar";
-import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-
-import BoxLayout from "../BoxLayout";
-import SectionTitle from "../Helpers/SectionTitle";
 import DetailedInformation from "../DetailedInformation";
 import Contact from "../Contact";
+import PersonalInformation from "../PersonalInformation";
+import PersonalDataForm from "../PersonalDataForm";
+import Field from "../Field";
 
 function PersonalSection() {
   const { personalData, editData, editPicture, editFitMedical } =
@@ -30,6 +17,10 @@ function PersonalSection() {
   const handleEdit = (e: React.FormEvent, dataForm: PersonalData) => {
     e.preventDefault();
     editData(dataForm);
+    setEdit(false);
+  };
+
+  const handleCancelEdit = () => {
     setEdit(false);
   };
 
@@ -54,43 +45,16 @@ function PersonalSection() {
       }}
       component="section"
     >
-      <BoxLayout>
-        <Box
-          sx={{
-            position: "absolute",
-            top: "-60px",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            transform: "translateX(-70px)",
-          }}
-        >
-          <Avatar
-            sx={{
-              width: 100,
-              height: 100,
-              border: `2px solid ${colors.primary}`,
-              background: "white",
-            }}
-            alt="profile photo"
-            src={!personalData.picture ? defaultAvatar : personalData.picture}
-          />
-          <EditAvatar editPicture={handleEditPicture} />
-        </Box>
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: "center",
-            paddingTop: "50px",
-          }}
-        >
-          {personalData.firstName} {personalData.lastName} <i>#39389</i>
-        </Typography>
-        <SectionTitle title="Información personal">
-          <AssignmentIndIcon />
-        </SectionTitle>
+      <PersonalInformation
+        personalData={personalData}
+        handleEditPicture={handleEditPicture}
+      >
         {edit ? (
-          <PersonalDataForm handleEdit={handleEdit} data={personalData} />
+          <PersonalDataForm
+            handleEdit={handleEdit}
+            data={personalData}
+            handleCancelEdit={handleCancelEdit}
+          />
         ) : (
           <>
             <Grid container rowSpacing={1}>
@@ -103,7 +67,10 @@ function PersonalSection() {
               <Field fieldName="Teléfono" field={personalData.phoneNumber} />
               <Field fieldName="Alta" field={personalData.high} />
               <Field fieldName="Email" field={personalData.mail} />
-              <Field fieldName="Nacimiento" field={personalData.birth} />
+              <Field
+                fieldName="Nacimiento"
+                field={personalData.birth as string}
+              />
             </Grid>
           </>
         )}
@@ -126,13 +93,7 @@ function PersonalSection() {
             </Button>
           </Box>
         )}
-        <Divider
-          sx={{
-            background: colors.primary,
-            marginTop: "10px",
-          }}
-        />
-      </BoxLayout>
+      </PersonalInformation>
       <DetailedInformation
         editFitMedical={editFitMedical}
         fitMedical={personalData.fitMedical}

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import BoxLayout from "../BoxLayout";
 import SectionTitle from "../Helpers/SectionTitle";
 import EmailIcon from "@mui/icons-material/Email";

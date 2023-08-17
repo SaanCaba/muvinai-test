@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PersonalData } from "../models/personalData";
+import { formatDate } from "../components/PersonalDataForm/formatDate";
 
 function usePersonalData() {
   const [personalData, setPersonalData] = useState<PersonalData>({
@@ -16,9 +17,11 @@ function usePersonalData() {
   });
 
   const editData = (dataForm: PersonalData) => {
+    const formattedDate = formatDate(dataForm.birth as Date);
     setPersonalData({
       ...dataForm,
       picture: personalData.picture,
+      birth: formattedDate,
     });
   };
 

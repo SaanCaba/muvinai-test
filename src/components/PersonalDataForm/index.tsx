@@ -1,17 +1,24 @@
-import { Box, Grid, TextField, MenuItem, Button } from "@mui/material";
+import { Box, Grid, TextField, Button } from "@mui/material";
 import { PersonalData } from "../../models/personalData";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import GridItem from "../GridItemForm";
 import Label from "../Helpers/Label";
 import HighButton from "../HighButton";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { parseDate } from "./parseDate";
 
 interface Props {
   data: PersonalData;
   handleEdit: (e: React.FormEvent, dataForm: PersonalData) => void;
+  handleCancelEdit: () => void;
 }
 
-function PersonalDataForm({ data, handleEdit }: Props) {
-  const [dataForm, setDataForm] = useState(data);
+function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
+  const [dataForm, setDataForm] = useState({
+    ...data,
+    birth: parseDate(data.birth as string),
+  });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     keyValue: string
@@ -21,7 +28,6 @@ function PersonalDataForm({ data, handleEdit }: Props) {
       [keyValue]: e.target.value,
     });
   };
-
   return (
     <Box
       component="form"
@@ -108,13 +114,17 @@ function PersonalDataForm({ data, handleEdit }: Props) {
         </GridItem>
         <GridItem>
           <Label name="Nacimiento" />
-          <TextField
-            sx={{
-              width: "260px",
-            }}
-            name="birth"
-            value={dataForm.birth}
-            onChange={(e) => handleChange(e, "birth")}
+          <DatePicker
+            selected={
+              data.birth !== dataForm.birth
+                ? dataForm.birth
+                : (parseDate(data.birth as unknown as string) as Date)
+            }
+            onChange={(date) =>
+              setDataForm({ ...dataForm, birth: date as Date })
+            }
+            dateFormat={"dd/MM/yyyy"}
+            className="datepicker"
           />
         </GridItem>
       </Grid>
@@ -127,7 +137,7 @@ function PersonalDataForm({ data, handleEdit }: Props) {
         }}
       >
         <Button
-          type="submit"
+          type="button"
           sx={{
             height: "50px",
             width: "120px",
@@ -135,6 +145,7 @@ function PersonalDataForm({ data, handleEdit }: Props) {
           }}
           variant="contained"
           color="error"
+          onClick={handleCancelEdit}
         >
           Cancelar
         </Button>
