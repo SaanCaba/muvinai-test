@@ -47,6 +47,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="firstName"
             onChange={(e) => handleChange(e, "firstName")}
             value={dataForm.firstName}
+            required
           />
         </GridItem>
         <GridItem>
@@ -58,6 +59,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="lastName"
             value={dataForm.lastName}
             onChange={(e) => handleChange(e, "lastName")}
+            required
           />
         </GridItem>
         <GridItem>
@@ -69,6 +71,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="activePlan"
             value={dataForm.activePlan}
             onChange={(e) => handleChange(e, "activePlan")}
+            required
           />
         </GridItem>
         <GridItem>
@@ -80,6 +83,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="dni"
             value={dataForm.dni}
             onChange={(e) => handleChange(e, "dni")}
+            required
           />
         </GridItem>
         <GridItem>
@@ -91,6 +95,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="phoneNumber"
             value={dataForm.phoneNumber}
             onChange={(e) => handleChange(e, "phoneNumber")}
+            required
           />
         </GridItem>
         <GridItem>
@@ -110,6 +115,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             name="mail"
             value={dataForm.mail}
             onChange={(e) => handleChange(e, "mail")}
+            required
           />
         </GridItem>
         <GridItem>
@@ -125,6 +131,7 @@ function PersonalDataForm({ data, handleEdit, handleCancelEdit }: Props) {
             }
             dateFormat={"dd/MM/yyyy"}
             className="datepicker"
+            required
           />
         </GridItem>
       </Grid>
