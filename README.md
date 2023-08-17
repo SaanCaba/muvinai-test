@@ -18,4 +18,5 @@
 - En http://localhost:5173/ se debería poder visualizar.
 
 
-<span>![</span><span>Aquí la descripción de la imagen por si no carga</span><span>]</span><span>(</span><span>"https://github.com/SaanCaba/muvinai-test/edit/main/src/assets/imgmuvinai.png"</span><span>)</span>
+<img src="https://github.com/SaanCaba/muvinai-test/edit/main/src/assets/imgmuvinai.png" alt="project img" width=120 height=120 />
+
