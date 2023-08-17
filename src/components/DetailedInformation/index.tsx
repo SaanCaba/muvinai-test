@@ -1,52 +1,34 @@
 import BoxLayout from "../BoxLayout";
 import SectionTitle from "../Helpers/SectionTitle";
-import {
-  Grid,
-  Typography,
-  Button,
-  Box,
-  TextField,
-  Divider,
-} from "@mui/material";
+import { Grid, Typography, Button, Box, Divider } from "@mui/material";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import Field from "../Field";
 import Label from "../Helpers/Label";
 import { useState } from "react";
 import { colors } from "../../constants";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { formatDate } from "../PersonalDataForm/formatDate";
+import FitMedicalField from "./FitMedicalField";
 
 interface Props {
-  fitMedical: boolean;
-  editFitMedical: (val: boolean) => void;
-}
-
-function FitMedicalField({
-  fieldName,
-  children,
-}: {
-  fieldName: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <Grid item xs={3}>
-      <Label name={fieldName} />
-      <Typography
-        sx={{
-          textAlign: "center",
-        }}
-        variant="h6"
-      >
-        {children}
-      </Typography>
-    </Grid>
-  );
+  fitMedical: { status: boolean; expiration: string | Date };
+  editFitMedical: (status: boolean, expiration: string) => void;
 }
 
 function DetailedInformation({ fitMedical, editFitMedical }: Props) {
   const [localFitMedical, setLocalFitMedical] = useState<null | string>(null);
+  const [localExpiration, setLocalExpiration] = useState(new Date());
   const handleUpdateFitMedical = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       setLocalFitMedical(URL.createObjectURL(e.target.files[0]));
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    editFitMedical(true, formatDate(localExpiration));
+    setLocalFitMedical(null);
   };
 
   return (
@@ -64,7 +46,20 @@ function DetailedInformation({ fitMedical, editFitMedical }: Props) {
         <Field fieldName="ID de Socio" field="#39389" />
         <Field fieldName="Estado" field="En Actividad" />
         <FitMedicalField fieldName="Apto médico">
-          {fitMedical ? "Aprobado" : "Desaprobado / No enviado"}
+          {fitMedical.status ? (
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <span>Aprobado</span>
+              <span>Expira: {fitMedical.expiration as string}</span>
+            </Box>
+          ) : (
+            "Desaprobado / No enviado"
+          )}
         </FitMedicalField>
       </Grid>
       <Box
@@ -106,46 +101,50 @@ function DetailedInformation({ fitMedical, editFitMedical }: Props) {
             <img width={300} height={300} src={localFitMedical} />
           </a>
           <Box
-            sx={{
-              display: "flex",
-              gap: "10px",
-            }}
+            component="form"
+            onSubmit={(e) => handleSubmit(e)}
+            sx={{ display: "flex", flexDirection: "column", gap: "12px" }}
           >
-            <Button
+            <Box>
+              <Label name="Fecha de caducidad" />
+              <DatePicker
+                selected={localExpiration}
+                onChange={(date) => date !== null && setLocalExpiration(date)}
+                dateFormat={"dd/MM/yyyy"}
+                className="datepicker"
+              />
+            </Box>
+            <Box
               sx={{
-                width: "145px",
-              }}
-              variant="contained"
-              color="error"
-              onClick={() => {
-                editFitMedical(false);
-                setLocalFitMedical(null);
+                display: "flex",
+                gap: "10px",
               }}
             >
-              Denegar
-            </Button>
-            <Button
-              sx={{
-                width: "145px",
-              }}
-              variant="contained"
-              color="success"
-              onClick={() => {
-                editFitMedical(true);
-                setLocalFitMedical(null);
-              }}
-            >
-              Aprobar
-            </Button>
-          </Box>
-          <Box>
-            <Label name="Fecha de caducidadnpm rn" />
-            <TextField
-              type="date"
-              sx={{
-                width: "300px",
-              }}
-            />
+              <Button
+                sx={{
+                  width: "145px",
+                }}
+                variant="contained"
+                color="error"
+                onClick={() => {
+                  editFitMedical(false, fitMedical.expiration as string);
+                  setLocalFitMedical(null);
+                }}
+                type="button"
+              >
+                Denegar
+              </Button>
+              <Button
+                sx={{
+                  width: "145px",
+                }}
+                variant="contained"
+                color="success"
+                type="submit"
+              >
+                Aprobar
+              </Button>
+            </Box>
           </Box>
         </Box>
       )}

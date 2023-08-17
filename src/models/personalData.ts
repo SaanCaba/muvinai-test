@@ -8,9 +8,11 @@ export interface PersonalData {
   mail: string;
   birth: string | Date;
   picture: any;
-  fitMedical: boolean;
+  fitMedical: {
+    status: boolean;
+    expiration: string | Date;
+  };
 }
-
 export interface PersonalDataForm extends PersonalData {
   birth: Date;
 }
