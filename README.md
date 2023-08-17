@@ -20,3 +20,4 @@
 
 <img src="https://github.com/SaanCaba/muvinai-test/edit/main/src/assets/imgmuvinai.png" alt="project img" width=120 height=120 />
 
+![Project image]("https://raw.githubusercontent.com/Saancaba/muvinai-test/main/src/assets/imgmuvinai.png")
