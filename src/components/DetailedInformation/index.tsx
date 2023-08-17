@@ -1,10 +1,18 @@
 import BoxLayout from "../BoxLayout";
 import SectionTitle from "../Helpers/SectionTitle";
-import { Grid, Typography, Button, Box, TextField } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  Button,
+  Box,
+  TextField,
+  Divider,
+} from "@mui/material";
 import RecentActorsIcon from "@mui/icons-material/RecentActors";
 import Field from "../Field";
 import Label from "../Helpers/Label";
 import { useState } from "react";
+import { colors } from "../../constants";
 
 interface Props {
   fitMedical: boolean;
@@ -141,6 +149,12 @@ function DetailedInformation({ fitMedical, editFitMedical }: Props) {
           </Box>
         </Box>
       )}
+      <Divider
+        sx={{
+          background: colors.primary,
+          marginTop: "10px",
+        }}
+      />
     </BoxLayout>
   );
 }

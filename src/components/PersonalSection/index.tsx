@@ -20,6 +20,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import BoxLayout from "../BoxLayout";
 import SectionTitle from "../Helpers/SectionTitle";
 import DetailedInformation from "../DetailedInformation";
+import Contact from "../Contact";
 
 function PersonalSection() {
   const { personalData, editData, editPicture, editFitMedical } =
@@ -136,6 +137,7 @@ function PersonalSection() {
         editFitMedical={editFitMedical}
         fitMedical={personalData.fitMedical}
       />
+      <Contact />
     </Paper>
   );
 }

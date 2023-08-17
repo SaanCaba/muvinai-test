@@ -37,3 +37,34 @@ body {
 .labelPicture:hover {
   background-color: rgba(206, 245, 206, 0.516);
 }
+
+.wppButton {
+  background-color: #25d366;
+  color: white;
+  transition: all 1s ease;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  min-width: 255px;
+}
+.wppButton:hover {
+  background-color: #25d387;
+}
+
+.mailButton {
+  background-color: #f47e7e;
+  color: white;
+  transition: all 1s ease;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  min-width: 255px;
+}
+
+.mailButton:hover {
+  background-color: #d97070;
+}
