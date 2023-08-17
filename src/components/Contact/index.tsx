@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import BoxLayout from "../BoxLayout";
 import SectionTitle from "../Helpers/SectionTitle";
 import EmailIcon from "@mui/icons-material/Email";
@@ -55,6 +55,12 @@ function Contact() {
           <button className="mailButton">Enviar correo electrónico</button>
         </Box>
       </Box>
+      <Divider
+        sx={{
+          background: colors.primary,
+          marginTop: "10px",
+        }}
+      />
     </BoxLayout>
   );
 }

@@ -8,6 +8,9 @@ import Contact from "../Contact";
 import PersonalInformation from "../PersonalInformation";
 import PersonalDataForm from "../PersonalDataForm";
 import Field from "../Field";
+import BoxLayout from "../BoxLayout";
+import DoDisturbIcon from "@mui/icons-material/DoDisturb";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
 function PersonalSection() {
   const { personalData, editData, editPicture, editFitMedical } =
@@ -99,6 +102,29 @@ function PersonalSection() {
         fitMedical={personalData.fitMedical}
       />
       <Contact />
+      <BoxLayout>
+        <Box
+          sx={{
+            display: "flex",
+            gap: "20px",
+          }}
+        >
+          <Button
+            startIcon={<ConfirmationNumberIcon />}
+            color="success"
+            variant="contained"
+          >
+            Aplicar cupón de descuento
+          </Button>
+          <Button
+            startIcon={<DoDisturbIcon />}
+            color="error"
+            variant="contained"
+          >
+            Invalidar accesso
+          </Button>
+        </Box>
+      </BoxLayout>
     </Paper>
   );
 }
